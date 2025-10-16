@@ -1,0 +1,353 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://example.com/schemas/GenericTrackingNotificationDto.json",
+  "title": "GenericTrackingNotification",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "event",
+    "timestamp",
+    "shipmentDetails"
+  ],
+  "properties": {
+    "event": {
+      "type": "string",
+      "description": "Notification type."
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp of the notification."
+    },
+    "shipmentId": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "TMS shipment ID."
+    },
+    "bookingPartyId": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Booking party ID."
+    },
+    "bookingId": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Booking ID."
+    },
+    "eventDetails": {
+      "anyOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/definitions/EventDetails"
+        }
+      ]
+    },
+    "shipmentDetails": {
+      "$ref": "#/definitions/ShipmentDetailsAPI"
+    }
+  },
+  "definitions": {
+    "EventDetails": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "eventCode",
+        "eventDescription",
+        "newDate"
+      ],
+      "properties": {
+        "isDateCancelled": {
+          "type": [
+            "boolean",
+            "null"
+          ],
+          "description": "Flag to indicate if the event has changed."
+        },
+        "isDateChanged": {
+          "type": [
+            "boolean",
+            "null"
+          ],
+          "description": "Flag to indicate if the event is cancelled."
+        },
+        "isNewDate": {
+          "type": [
+            "boolean",
+            "null"
+          ],
+          "description": "Flag to indicate if the event is new."
+        },
+        "eventCode": {
+          "type": "string",
+          "description": "Event code such as ESTIMATED_PICKUP, ETA, or ARV."
+        },
+        "eventDescription": {
+          "type": "string",
+          "description": "Event description."
+        },
+        "newDate": {
+          "type": "string",
+          "description": "New event date."
+        },
+        "oldDate": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Old event date."
+        }
+      }
+    },
+    "ShipmentDetailsAPI": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "childShipmentIds",
+        "product",
+        "dateTime",
+        "events",
+        "proofsOfDelivery"
+      ],
+      "properties": {
+        "bookingId": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "DSV Booking id - Identifier of the Booking."
+        },
+        "shipmentId": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "DSV Shipment id - Identifier of the shipment."
+        },
+        "masterShipmentId": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Identifier of the DSV Shipment master ID."
+        },
+        "childShipmentIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Identifier of the DSV Shipment child ID list."
+        },
+        "status": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Overall Booking/Shipment status."
+        },
+        "product": {
+          "type": "object",
+          "additionalProperties": true,
+          "description": "Product."
+        },
+        "parties": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "object",
+              "additionalProperties": true
+            }
+          ],
+          "description": "Parties."
+        },
+        "dateTime": {
+          "type": "object",
+          "additionalProperties": true,
+          "description": "DateTime section."
+        },
+        "references": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": "object",
+            "additionalProperties": true
+          },
+          "description": "References used in the booking/shipment."
+        },
+        "bookedBy": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Name of the user that submitted the booking."
+        },
+        "events": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": true
+          },
+          "description": "Track and trace events."
+        },
+        "packages": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": "object",
+            "additionalProperties": true
+          },
+          "description": "All package details in the booking/shipment."
+        },
+        "transport": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "object",
+              "additionalProperties": true
+            }
+          ],
+          "description": "Transport."
+        },
+        "containers": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": "object",
+            "additionalProperties": true
+          },
+          "description": "Container details in the booking/shipment."
+        },
+        "deliveryInstructions": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Free text delivery instructions."
+        },
+        "pickupInstructions": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Free text pickup instructions."
+        },
+        "shipmentNotes": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Shipment notes."
+        },
+        "incoterms": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "object",
+              "additionalProperties": true
+            }
+          ],
+          "description": "Incoterms."
+        },
+        "serviceLevel": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "object",
+              "additionalProperties": true
+            }
+          ],
+          "description": "Service level."
+        },
+        "goods": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "object",
+              "additionalProperties": true
+            }
+          ],
+          "description": "Goods."
+        },
+        "issues": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": "object",
+            "additionalProperties": true
+          },
+          "description": "Issues details."
+        },
+        "publicShipmentId": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Global Unique Identifier of this shipment (GUID)."
+        },
+        "carrierTrackingId": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Tracking ID used by the underlying express carrier."
+        },
+        "proofsOfDelivery": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": true
+          },
+          "description": "Proof of delivery info (POD document)."
+        },
+        "selectedServices": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": "object",
+            "additionalProperties": true
+          },
+          "description": "Service name, code and detail of the booking/shipment."
+        },
+        "customs": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "object",
+              "additionalProperties": true
+            }
+          ],
+          "description": "Customs."
+        }
+      }
+    }
+  }
+}
