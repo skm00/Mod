@@ -3,6 +3,7 @@
   "$id": "https://example.com/schemas/GenericTrackingNotificationDto.json",
   "title": "GenericTrackingNotification",
   "type": "object",
+  "additionalProperties": true,
   "required": [
     "event",
     "timestamp",
@@ -40,6 +41,7 @@
       "description": "Booking ID."
     },
     "eventDetails": {
+      "description": "Detailed information about the specific event.",
       "anyOf": [
         {
           "type": "null"
@@ -54,6 +56,1622 @@
     }
   },
   "definitions": {
+    "Address": {
+      "type": "object",
+      "properties": {
+        "companyName": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Company name."
+        },
+        "addressId": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Customer address identifier."
+        },
+        "addressLine1": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Address line 1."
+        },
+        "addressLine2": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Address line 2."
+        },
+        "addressLine3": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Address line 3."
+        },
+        "city": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "City name."
+        },
+        "countryCode": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "ISO country code."
+        },
+        "state": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "State name or code."
+        },
+        "zipCode": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Postal code."
+        },
+        "instructions": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Instructions related to this party on the booking."
+        },
+        "mdm": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "DSV debitor number (MDM number)."
+        },
+        "eori": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Economic Operators Registration and Identification number (EORI number)."
+        },
+        "approvedShipper": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Indicates whether the party is an approved shipper."
+        }
+      }
+    },
+    "ContactPerson": {
+      "type": "object",
+      "required": [
+        "name"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name of the contact person."
+        },
+        "email": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Email address of the contact person."
+        },
+        "telephone": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Phone number of the contact person."
+        }
+      }
+    },
+    "BookingParty": {
+      "type": "object",
+      "properties": {
+        "address": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/definitions/Address"
+            }
+          ]
+        },
+        "contact": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/definitions/ContactPerson"
+            }
+          ]
+        }
+      }
+    },
+    "Sender": {
+      "type": "object",
+      "properties": {
+        "address": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/definitions/Address"
+            }
+          ]
+        },
+        "contact": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/definitions/ContactPerson"
+            }
+          ]
+        }
+      }
+    },
+    "Receiver": {
+      "type": "object",
+      "properties": {
+        "address": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/definitions/Address"
+            }
+          ]
+        },
+        "contact": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/definitions/ContactPerson"
+            }
+          ]
+        }
+      }
+    },
+    "Delivery": {
+      "type": "object",
+      "properties": {
+        "address": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/definitions/Address"
+            }
+          ]
+        },
+        "contact": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/definitions/ContactPerson"
+            }
+          ]
+        }
+      }
+    },
+    "Pickup": {
+      "type": "object",
+      "properties": {
+        "address": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/definitions/Address"
+            }
+          ]
+        },
+        "contact": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/definitions/ContactPerson"
+            }
+          ]
+        }
+      }
+    },
+    "Notify": {
+      "type": "object",
+      "properties": {
+        "address": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/definitions/Address"
+            }
+          ]
+        },
+        "contact": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/definitions/ContactPerson"
+            }
+          ]
+        }
+      }
+    },
+    "FreightPayer": {
+      "type": "object",
+      "properties": {
+        "address": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/definitions/Address"
+            }
+          ]
+        },
+        "contact": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/definitions/ContactPerson"
+            }
+          ]
+        }
+      }
+    },
+    "Carrier": {
+      "type": "object",
+      "properties": {
+        "address": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/definitions/Address"
+            }
+          ]
+        },
+        "contact": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/definitions/ContactPerson"
+            }
+          ]
+        }
+      }
+    },
+    "BaseParty": {
+      "type": "object",
+      "properties": {
+        "address": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/definitions/Address"
+            }
+          ]
+        },
+        "contact": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/definitions/ContactPerson"
+            }
+          ]
+        }
+      }
+    },
+    "Parties": {
+      "type": "object",
+      "required": [
+        "sender",
+        "receiver",
+        "bookingParty"
+      ],
+      "properties": {
+        "sender": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/definitions/Sender"
+            }
+          ]
+        },
+        "receiver": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/definitions/Receiver"
+            }
+          ]
+        },
+        "delivery": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/definitions/Delivery"
+            }
+          ]
+        },
+        "pickup": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/definitions/Pickup"
+            }
+          ]
+        },
+        "notify": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/definitions/Notify"
+            }
+          ]
+        },
+        "freightPayer": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/definitions/FreightPayer"
+            }
+          ]
+        },
+        "bookingParty": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/definitions/BookingParty"
+            }
+          ]
+        },
+        "carrier": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/definitions/Carrier"
+            }
+          ]
+        },
+        "party": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/definitions/Party"
+          },
+          "description": "Reserved for future use."
+        }
+      }
+    },
+    "Party": {
+      "type": "object",
+      "required": [
+        "role"
+      ],
+      "properties": {
+        "address": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/definitions/Address"
+            }
+          ]
+        },
+        "contact": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/definitions/ContactPerson"
+            }
+          ]
+        },
+        "role": {
+          "type": "string",
+          "description": "Business role of the party."
+        }
+      }
+    },
+    "Battery": {
+      "type": "object",
+      "properties": {
+        "batteryType": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Battery type."
+        },
+        "batteryPackageType": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Battery package type."
+        }
+      }
+    },
+    "DangerousGoodsDTO": {
+      "type": "object",
+      "properties": {
+        "className": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "UN class name."
+        },
+        "subRisk": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "UN sub risk."
+        },
+        "flashPoint": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Flash point."
+        },
+        "limitedQuantity": {
+          "type": [
+            "boolean",
+            "null"
+          ],
+          "description": "Indicates whether the item qualifies for limited quantity."
+        },
+        "marinePollutant": {
+          "type": [
+            "boolean",
+            "null"
+          ],
+          "description": "Indicates whether the item is a marine pollutant."
+        },
+        "packingGroup": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Packing group."
+        },
+        "properShippingName": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Proper shipping name."
+        },
+        "technicalName": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Technical name."
+        },
+        "technicalNameNational": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "National technical name."
+        },
+        "temperatureFrom": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Minimum temperature."
+        },
+        "temperatureTo": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Maximum temperature."
+        },
+        "type": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Dangerous goods classification type."
+        },
+        "unCode": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "description": "UN code identifying the dangerous goods."
+        },
+        "tunnelCode": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Tunnel code."
+        },
+        "packagesCount": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "description": "Number of packages containing these dangerous goods."
+        },
+        "packingKind": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Package type for the dangerous goods."
+        },
+        "netQuantity": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Net quantity of the dangerous goods."
+        },
+        "netQuantityUnit": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Unit of measure for the net quantity."
+        },
+        "grossQuantity": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Gross quantity of the dangerous goods."
+        },
+        "grossQuantityUnit": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Unit of measure for the gross quantity."
+        },
+        "empty": {
+          "type": [
+            "boolean",
+            "null"
+          ],
+          "description": "Indicates if the container is empty."
+        }
+      }
+    },
+    "PackageIdentifierDTO": {
+      "type": "object",
+      "properties": {
+        "reference": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Reference value."
+        },
+        "qualifier": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Reference qualifier."
+        }
+      }
+    },
+    "PackageDTO": {
+      "type": "object",
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "stackable": {
+          "description": "Stackable indicator.",
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "string"
+            },
+            {
+              "type": "boolean"
+            }
+          ]
+        },
+        "length": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Length of a single package."
+        },
+        "lengthUOM": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Unit of measure for the length."
+        },
+        "loadingMeters": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Loading meters."
+        },
+        "palletSpace": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "description": "Number of pallets on the ground floor."
+        },
+        "grossWeight": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Total gross weight for the package line."
+        },
+        "netWeight": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Net weight for the package line."
+        },
+        "quantity": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "description": "Number of packages in the line."
+        },
+        "totalVolume": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Total volume for the package line."
+        },
+        "volumeUOM": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Unit of measure for the volume."
+        },
+        "totalWeight": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Total weight for the package line."
+        },
+        "width": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Width of a single package."
+        },
+        "widthUOM": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Unit of measure for the width."
+        },
+        "height": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Height of a single package."
+        },
+        "heightUOM": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Unit of measure for the height."
+        },
+        "packageType": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Package type."
+        },
+        "temperatureMin": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "description": "Minimum temperature requirement."
+        },
+        "temperatureMax": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "description": "Maximum temperature requirement."
+        },
+        "description": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Package level description."
+        },
+        "shippingMarks": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Shipping marks."
+        },
+        "shippingMarksList": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": "string"
+          },
+          "description": "Shipping marks list."
+        },
+        "harmonizedCodes": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": "string"
+          },
+          "description": "Harmonized codes."
+        },
+        "isDangerous": {
+          "type": [
+            "boolean",
+            "null"
+          ],
+          "description": "Indicates dangerous goods."
+        },
+        "dangerous": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/definitions/DangerousGoodsDTO"
+          },
+          "description": "Dangerous goods details."
+        },
+        "containerNo": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Reference to a container line."
+        },
+        "trackingNumbers": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": "string"
+          },
+          "description": "Tracking numbers for the package."
+        },
+        "cargoAircraftOnly": {
+          "type": [
+            "boolean",
+            "null"
+          ],
+          "description": "Indicates cargo aircraft only."
+        },
+        "temperatureControlled": {
+          "type": [
+            "boolean",
+            "null"
+          ],
+          "description": "Indicates temperature controlled goods."
+        },
+        "goodsType": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Goods type."
+        },
+        "battery": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/definitions/Battery"
+            }
+          ]
+        },
+        "referenceNumber": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Package reference number."
+        },
+        "references": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/definitions/PackageIdentifierDTO"
+          },
+          "description": "Package references."
+        },
+        "type": {
+          "type": "string",
+          "description": "Package line type."
+        }
+      }
+    },
+    "GoodsApiDto": {
+      "type": "object",
+      "properties": {
+        "grossWeightUom": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Unit of measure for total weight."
+        },
+        "grossWeightValue": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Total gross weight."
+        },
+        "loadingMetersUom": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Unit of measure for loading meters."
+        },
+        "loadingMetersValue": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Total loading meters."
+        },
+        "quantityUom": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Unit of measure for total quantity."
+        },
+        "quantityValue": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Total quantity."
+        },
+        "volumeUom": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Unit of measure for total volume."
+        },
+        "volumeValue": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Total volume."
+        },
+        "description": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Description of the goods."
+        },
+        "chargeableWeight": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Chargeable weight."
+        },
+        "chargeableWeightUOM": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Unit of measure for chargeable weight."
+        },
+        "chargeableVolume": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Chargeable volume."
+        },
+        "chargeableVolumeUOM": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Unit of measure for chargeable volume."
+        }
+      }
+    },
+    "DocumentDto": {
+      "type": "object",
+      "required": [
+        "documentId",
+        "documentType",
+        "typeDescription",
+        "fileName",
+        "fileType",
+        "downloadUrl"
+      ],
+      "properties": {
+        "documentId": {
+          "type": "string",
+          "description": "Document ID."
+        },
+        "documentType": {
+          "type": "string",
+          "description": "Document type."
+        },
+        "typeDescription": {
+          "type": "string",
+          "description": "Description of the document type."
+        },
+        "createDate": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time",
+          "description": "Creation date of the document."
+        },
+        "fileName": {
+          "type": "string",
+          "description": "File name."
+        },
+        "fileType": {
+          "type": "string",
+          "description": "File type."
+        },
+        "downloadUrl": {
+          "type": "string",
+          "description": "Download URL for the document."
+        }
+      }
+    },
+    "LocationApiDto": {
+      "type": "object",
+      "properties": {
+        "countryCode": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "ISO country code."
+        },
+        "unlocode": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "UN/LOCODE."
+        },
+        "place": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Associated location name."
+        }
+      }
+    },
+    "EventApiDto": {
+      "type": "object",
+      "required": [
+        "cancelled"
+      ],
+      "properties": {
+        "eventDate": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time",
+          "description": "Date and time when the event took place."
+        },
+        "eventLastModified": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time",
+          "description": "Date and time when the event was last modified."
+        },
+        "eventGroup": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Event group."
+        },
+        "eventCode": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Event code."
+        },
+        "eventDescription": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Event description."
+        },
+        "eventType": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Associated event type."
+        },
+        "eventTypeValue": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Identifier for the event type."
+        },
+        "location": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/definitions/LocationApiDto"
+            }
+          ]
+        },
+        "transportMode": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Mode of transport for multi-leg shipments."
+        },
+        "vesselName": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Vessel name for multi-leg transport."
+        },
+        "voyageFlightNo": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Flight or vessel identifier."
+        },
+        "cargoCutOff": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time",
+          "description": "Cargo cut-off date and time."
+        },
+        "cargoAvailability": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time",
+          "description": "Cargo availability date."
+        },
+        "cancelled": {
+          "type": "boolean",
+          "description": "Indicates if the event has been cancelled."
+        },
+        "docsDue": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time",
+          "description": "Documents due deadline."
+        },
+        "vgmCutOff": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time",
+          "description": "Verified gross mass cut-off date and time."
+        }
+      }
+    },
+    "CustomsApiDto": {
+      "type": "object",
+      "required": [
+        "entryNumber"
+      ],
+      "properties": {
+        "shippedOnboardDate": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time",
+          "description": "Shipped on board date."
+        },
+        "customsStatus": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Customs status."
+        },
+        "entryNumber": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Customs entry numbers."
+        },
+        "forwarder": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/definitions/BaseParty"
+            }
+          ]
+        },
+        "removalMode": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Removal mode for customs transit."
+        }
+      }
+    },
+    "DateTimeRange": {
+      "type": "object",
+      "required": [
+        "date"
+      ],
+      "properties": {
+        "date": {
+          "type": "string",
+          "format": "date",
+          "description": "Requested date (YYYY-MM-DD)."
+        },
+        "start": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "time",
+          "description": "Start time."
+        },
+        "end": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "time",
+          "description": "End time."
+        }
+      }
+    },
+    "DateTimeSection": {
+      "type": "object",
+      "properties": {
+        "pickupTime": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/definitions/DateTimeRange"
+            }
+          ]
+        },
+        "deliveryTime": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/definitions/DateTimeRange"
+            }
+          ]
+        }
+      }
+    },
+    "Product": {
+      "type": "object",
+      "required": [
+        "name"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Main transport mode."
+        },
+        "billOfLading": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Bill of lading type."
+        },
+        "containerMode": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Container mode."
+        },
+        "containers": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": "object",
+            "additionalProperties": true
+          },
+          "description": "Container requirements for FCL shipments."
+        },
+        "dropOff": {
+          "type": [
+            "boolean",
+            "null"
+          ],
+          "description": "Indicates drop-off service."
+        },
+        "handover": {
+          "type": [
+            "boolean",
+            "null"
+          ],
+          "description": "Indicates cargo handover by DSV."
+        }
+      }
+    },
+    "Service": {
+      "type": "object",
+      "required": [
+        "name",
+        "displayName"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Service name."
+        },
+        "displayName": {
+          "type": "string",
+          "description": "Service display name."
+        },
+        "code": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Service code."
+        },
+        "details": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "description": "Booked service details.",
+          "additionalProperties": true
+        }
+      }
+    },
+    "ServiceLevelDTO": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Service level code."
+        },
+        "description": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Service level description."
+        }
+      }
+    },
+    "IssueAPI": {
+      "type": "object",
+      "properties": {
+        "issueDate": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time",
+          "description": "Issue date."
+        },
+        "issuePointCode": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Issue point code."
+        },
+        "issuePointDescription": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Issue point description."
+        },
+        "issuePartyCode": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Issue party code."
+        },
+        "issuePartyDescription": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Issue party description."
+        },
+        "issueTypeCode": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Issue type code."
+        },
+        "issueTypeDescription": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Issue type description."
+        },
+        "issueReasonCode": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Issue reason code."
+        },
+        "issueReasonDescription": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Issue reason description."
+        },
+        "issueNotes": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Additional information about the issue."
+        },
+        "issueResolved": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time",
+          "description": "Date when the issue was resolved."
+        }
+      }
+    },
+    "IncotermsDTO": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Incoterms code."
+        },
+        "location": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Incoterms location."
+        }
+      }
+    },
+    "TransportApiDto": {
+      "type": "object",
+      "properties": {
+        "houseBillNumber": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "House bill number."
+        },
+        "masterBillNumber": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Master bill number."
+        },
+        "awb": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Air waybill number."
+        },
+        "originName": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Origin name."
+        },
+        "originCode": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Origin UN location code."
+        },
+        "destinationName": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Destination name."
+        },
+        "destinationCode": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Destination UN location code."
+        },
+        "scac": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "SCAC code."
+        },
+        "carrierBookingRef": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Carrier booking reference."
+        }
+      }
+    },
+    "TypeValueDTO": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Reference type."
+        },
+        "value": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Reference value."
+        }
+      }
+    },
     "EventDetails": {
       "type": "object",
       "required": [
@@ -67,25 +1685,25 @@
             "boolean",
             "null"
           ],
-          "description": "Flag to indicate if the event has changed."
+          "description": "Indicates that the event date has been cancelled."
         },
         "isDateChanged": {
           "type": [
             "boolean",
             "null"
           ],
-          "description": "Flag to indicate if the event is cancelled."
+          "description": "Indicates that the event date has changed."
         },
         "isNewDate": {
           "type": [
             "boolean",
             "null"
           ],
-          "description": "Flag to indicate if the event is new."
+          "description": "Indicates that this is a new event date."
         },
         "eventCode": {
           "type": "string",
-          "description": "Event code such as ESTIMATED_PICKUP, ETA, or ARV."
+          "description": "Event code."
         },
         "eventDescription": {
           "type": "string",
@@ -100,7 +1718,7 @@
             "string",
             "null"
           ],
-          "description": "Old event date."
+          "description": "Previous event date."
         }
       }
     },
@@ -119,39 +1737,38 @@
             "string",
             "null"
           ],
-          "description": "DSV Booking id - Identifier of the Booking."
+          "description": "DSV booking identifier."
         },
         "shipmentId": {
           "type": [
             "string",
             "null"
           ],
-          "description": "DSV Shipment id - Identifier of the shipment."
+          "description": "DSV shipment identifier."
         },
         "masterShipmentId": {
           "type": [
             "string",
             "null"
           ],
-          "description": "Identifier of the DSV Shipment master ID."
+          "description": "Master shipment identifier."
         },
         "childShipmentIds": {
           "type": "array",
           "items": {
             "type": "string"
           },
-          "description": "Identifier of the DSV Shipment child ID list."
+          "description": "Identifiers of the child shipments."
         },
         "status": {
           "type": [
             "string",
             "null"
           ],
-          "description": "Overall Booking/Shipment status."
+          "description": "Overall booking/shipment status."
         },
         "product": {
-          "type": "object",
-          "description": "Product."
+          "$ref": "#/definitions/Product"
         },
         "parties": {
           "anyOf": [
@@ -159,14 +1776,12 @@
               "type": "null"
             },
             {
-              "type": "object"
+              "$ref": "#/definitions/Parties"
             }
-          ],
-          "description": "Parties."
+          ]
         },
         "dateTime": {
-          "type": "object",
-          "description": "DateTime section."
+          "$ref": "#/definitions/DateTimeSection"
         },
         "references": {
           "type": [
@@ -174,23 +1789,23 @@
             "null"
           ],
           "items": {
-            "type": "object"
+            "$ref": "#/definitions/TypeValueDTO"
           },
-          "description": "References used in the booking/shipment."
+          "description": "Booking or shipment references."
         },
         "bookedBy": {
           "type": [
             "string",
             "null"
           ],
-          "description": "Name of the user that submitted the booking."
+          "description": "User who submitted the booking."
         },
         "events": {
           "type": "array",
           "items": {
-            "type": "object"
+            "$ref": "#/definitions/EventApiDto"
           },
-          "description": "Track and trace events."
+          "description": "Track-and-trace events."
         },
         "packages": {
           "type": [
@@ -198,9 +1813,9 @@
             "null"
           ],
           "items": {
-            "type": "object"
+            "$ref": "#/definitions/PackageDTO"
           },
-          "description": "All package details in the booking/shipment."
+          "description": "Package details."
         },
         "transport": {
           "anyOf": [
@@ -208,10 +1823,9 @@
               "type": "null"
             },
             {
-              "type": "object"
+              "$ref": "#/definitions/TransportApiDto"
             }
-          ],
-          "description": "Transport."
+          ]
         },
         "containers": {
           "type": [
@@ -219,23 +1833,23 @@
             "null"
           ],
           "items": {
-            "type": "object"
+            "$ref": "#/definitions/ContainerSummaryDTO"
           },
-          "description": "Container details in the booking/shipment."
+          "description": "Container details."
         },
         "deliveryInstructions": {
           "type": [
             "string",
             "null"
           ],
-          "description": "Free text delivery instructions."
+          "description": "Delivery instructions."
         },
         "pickupInstructions": {
           "type": [
             "string",
             "null"
           ],
-          "description": "Free text pickup instructions."
+          "description": "Pickup instructions."
         },
         "shipmentNotes": {
           "type": [
@@ -250,10 +1864,9 @@
               "type": "null"
             },
             {
-              "type": "object"
+              "$ref": "#/definitions/IncotermsDTO"
             }
-          ],
-          "description": "Incoterms."
+          ]
         },
         "serviceLevel": {
           "anyOf": [
@@ -261,10 +1874,9 @@
               "type": "null"
             },
             {
-              "type": "object"
+              "$ref": "#/definitions/ServiceLevelDTO"
             }
-          ],
-          "description": "Service level."
+          ]
         },
         "goods": {
           "anyOf": [
@@ -272,10 +1884,9 @@
               "type": "null"
             },
             {
-              "type": "object"
+              "$ref": "#/definitions/GoodsApiDto"
             }
-          ],
-          "description": "Goods."
+          ]
         },
         "issues": {
           "type": [
@@ -283,30 +1894,30 @@
             "null"
           ],
           "items": {
-            "type": "object"
+            "$ref": "#/definitions/IssueAPI"
           },
-          "description": "Issues details."
+          "description": "Issue details."
         },
         "publicShipmentId": {
           "type": [
             "string",
             "null"
           ],
-          "description": "Global Unique Identifier of this shipment (GUID)."
+          "description": "Public shipment identifier (GUID)."
         },
         "carrierTrackingId": {
           "type": [
             "string",
             "null"
           ],
-          "description": "Tracking ID used by the underlying express carrier."
+          "description": "Carrier tracking identifier."
         },
         "proofsOfDelivery": {
           "type": "array",
           "items": {
-            "type": "object"
+            "$ref": "#/definitions/DocumentDto"
           },
-          "description": "Proof of delivery info (POD document)."
+          "description": "Proof of delivery documents."
         },
         "selectedServices": {
           "type": [
@@ -314,9 +1925,9 @@
             "null"
           ],
           "items": {
-            "type": "object"
+            "$ref": "#/definitions/Service"
           },
-          "description": "Service name, code and detail of the booking/shipment."
+          "description": "Selected services."
         },
         "customs": {
           "anyOf": [
@@ -324,10 +1935,43 @@
               "type": "null"
             },
             {
-              "type": "object"
+              "$ref": "#/definitions/CustomsApiDto"
             }
+          ]
+        }
+      }
+    },
+    "ContainerSummaryDTO": {
+      "type": "object",
+      "properties": {
+        "containerNumber": {
+          "type": [
+            "string",
+            "null"
           ],
-          "description": "Customs."
+          "description": "Container number."
+        },
+        "containerType": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Container type."
+        },
+        "sealNumber": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Seal number."
+        },
+        "slotDate": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time",
+          "description": "Slot date."
         }
       }
     }
