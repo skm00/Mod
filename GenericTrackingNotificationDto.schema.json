@@ -3,7 +3,6 @@
   "$id": "https://example.com/schemas/GenericTrackingNotificationDto.json",
   "title": "GenericTrackingNotification",
   "type": "object",
-  "additionalProperties": true,
   "required": [
     "event",
     "timestamp",
@@ -57,7 +56,6 @@
   "definitions": {
     "EventDetails": {
       "type": "object",
-      "additionalProperties": true,
       "required": [
         "eventCode",
         "eventDescription",
@@ -108,7 +106,6 @@
     },
     "ShipmentDetailsAPI": {
       "type": "object",
-      "additionalProperties": true,
       "required": [
         "childShipmentIds",
         "product",
@@ -154,7 +151,6 @@
         },
         "product": {
           "type": "object",
-          "additionalProperties": true,
           "description": "Product."
         },
         "parties": {
@@ -163,15 +159,13 @@
               "type": "null"
             },
             {
-              "type": "object",
-              "additionalProperties": true
+              "type": "object"
             }
           ],
           "description": "Parties."
         },
         "dateTime": {
           "type": "object",
-          "additionalProperties": true,
           "description": "DateTime section."
         },
         "references": {
@@ -180,8 +174,7 @@
             "null"
           ],
           "items": {
-            "type": "object",
-            "additionalProperties": true
+            "type": "object"
           },
           "description": "References used in the booking/shipment."
         },
@@ -195,8 +188,7 @@
         "events": {
           "type": "array",
           "items": {
-            "type": "object",
-            "additionalProperties": true
+            "type": "object"
           },
           "description": "Track and trace events."
         },
@@ -206,8 +198,7 @@
             "null"
           ],
           "items": {
-            "type": "object",
-            "additionalProperties": true
+            "type": "object"
           },
           "description": "All package details in the booking/shipment."
         },
@@ -217,8 +208,7 @@
               "type": "null"
             },
             {
-              "type": "object",
-              "additionalProperties": true
+              "type": "object"
             }
           ],
           "description": "Transport."
@@ -229,8 +219,7 @@
             "null"
           ],
           "items": {
-            "type": "object",
-            "additionalProperties": true
+            "type": "object"
           },
           "description": "Container details in the booking/shipment."
         },
@@ -261,8 +250,7 @@
               "type": "null"
             },
             {
-              "type": "object",
-              "additionalProperties": true
+              "type": "object"
             }
           ],
           "description": "Incoterms."
@@ -273,8 +261,7 @@
               "type": "null"
             },
             {
-              "type": "object",
-              "additionalProperties": true
+              "type": "object"
             }
           ],
           "description": "Service level."
@@ -285,8 +272,7 @@
               "type": "null"
             },
             {
-              "type": "object",
-              "additionalProperties": true
+              "type": "object"
             }
           ],
           "description": "Goods."
@@ -297,8 +283,7 @@
             "null"
           ],
           "items": {
-            "type": "object",
-            "additionalProperties": true
+            "type": "object"
           },
           "description": "Issues details."
         },
@@ -319,8 +304,7 @@
         "proofsOfDelivery": {
           "type": "array",
           "items": {
-            "type": "object",
-            "additionalProperties": true
+            "type": "object"
           },
           "description": "Proof of delivery info (POD document)."
         },
@@ -330,8 +314,7 @@
             "null"
           ],
           "items": {
-            "type": "object",
-            "additionalProperties": true
+            "type": "object"
           },
           "description": "Service name, code and detail of the booking/shipment."
         },
@@ -341,8 +324,7 @@
               "type": "null"
             },
             {
-              "type": "object",
-              "additionalProperties": true
+              "type": "object"
             }
           ],
           "description": "Customs."
